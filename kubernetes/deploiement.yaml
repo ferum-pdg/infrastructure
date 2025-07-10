@@ -1,0 +1,46 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: landing-page-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: landing-page
+                port:
+                  number: 80
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: landing-page
+  labels:
+    app: landing-page
+spec:
+  containers:
+    - name: landing-page
+      image: ghcr.io/ferum-pdg/landing-page/landing-page:latest
+      ports:
+        - containerPort: 80
+  nodeSelector:
+    kubernetes.io/hostname: landingpage-pck-9uzh39b-pub-7jvdc-lb4tz
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: landing-page
+spec:
+  selector:
+    app: landing-page
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30080  # Tu peux choisir un port entre 30000 et 32767
