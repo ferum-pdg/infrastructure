@@ -1,11 +1,9 @@
-# infrastructure
+# Infrastructure
 
 In this repository, you will find the different configurations for our Kubernetes cluster on Infomaniak.
 
 
-Try to expose the landing page with
+For the moment, the landing page is accessible through HTTP :
 ```
-http://83.228.200.191:30080
+http://83.228.200.235
 ```
-
-Doesn't work for now
