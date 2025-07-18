@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: landing-page
+  namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/write-back-method: argocd
+    argocd-image-updater.argoproj.io/image-list: "ghcr.io/ferum-pdg/landing-page/landing-page"
+    argocd-image-updater.argoproj.io/api.update-strategy: latest
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/ferum-pdg/infrastructure
+    targetRevision: main
+    path: kubernetes/landing-page
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: landing-page
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
