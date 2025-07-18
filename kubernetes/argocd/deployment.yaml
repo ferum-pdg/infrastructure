@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
   annotations:
     argocd-image-updater.argoproj.io/write-back-method: argocd
-    argocd-image-updater.argoproj.io/image-list: "ghcr.io/ferum-pdg/landing-page/landing-page"
+    argocd-image-updater.argoproj.io/image-list: api=ghcr.io/ferum-pdg/landing-page/landing-page
     argocd-image-updater.argoproj.io/api.update-strategy: latest
 spec:
   project: default
