@@ -13,7 +13,7 @@ spec:
     repoURL: https://github.com/ferum-pdg/infrastructure
     targetRevision: main
     directory:
-      include: landing-page/
+      include: landing-page/*
     path: kubernetes
   destination:
     server: https://kubernetes.default.svc
