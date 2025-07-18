@@ -4,7 +4,7 @@ metadata:
   name: landing-page
   namespace: argocd
   annotations:
-    argocd-image-updater.argoproj.io/write-back-method: argocd
+    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
     argocd-image-updater.argoproj.io/image-list: landing-page=ghcr.io/ferum-pdg/landing-page/landing-page
     argocd-image-updater.argoproj.io/api.update-strategy: latest
 spec:
@@ -12,7 +12,9 @@ spec:
   source:
     repoURL: https://github.com/ferum-pdg/infrastructure
     targetRevision: main
-    path: kubernetes/landing-page
+    directory:
+      include: landing-page/
+    path: kubernetes
   destination:
     server: https://kubernetes.default.svc
     namespace: landing-page
