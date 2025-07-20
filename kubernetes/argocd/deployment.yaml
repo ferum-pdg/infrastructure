@@ -12,9 +12,8 @@ spec:
   source:
     repoURL: https://github.com/ferum-pdg/infrastructure
     targetRevision: main
-    directory:
-      include: landing-page/*
-    path: kubernetes
+    path: kubernetes/landing-page/
+    kustomize: {}
   destination:
     server: https://kubernetes.default.svc
     namespace: landing-page
