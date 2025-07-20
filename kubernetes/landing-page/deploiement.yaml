@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: landing-page
-        image: ghcr.io/ferum-pdg/landing-page/landing-page:latest
+        image: ghcr.io/ferum-pdg/landing-page/landing-page
         ports:
         - containerPort: 3000
       restartPolicy: Always
