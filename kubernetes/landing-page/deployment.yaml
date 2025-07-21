@@ -10,6 +10,10 @@ metadata:
   name: landing-page
   labels:
     app: landing-page
+  annotations:
+    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
+    argocd-image-updater.argoproj.io/image-list: landing-page=ghcr.io/ferum-pdg/landing-page/landing-page
+    argocd-image-updater.argoproj.io/landing-page.update-strategy: digest
 spec:
   replicas: 1
   selector:
@@ -22,7 +26,7 @@ spec:
     spec:
       containers:
       - name: landing-page
-        image: ghcr.io/ferum-pdg/landing-page/landing-page
+        image: ghcr.io/ferum-pdg/landing-page/landing-page:latest
         ports:
         - containerPort: 3000
       restartPolicy: Always
