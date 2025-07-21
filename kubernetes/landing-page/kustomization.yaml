@@ -5,5 +5,5 @@ resources:
   - deployment.yaml
 
 images:
-  - name: ghcr.io/tonorg/landing-page/landing-page
+  - name: ghcr.io/ferum-pdg/landing-page/landing-page
     newTag: latest
