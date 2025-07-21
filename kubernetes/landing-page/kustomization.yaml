@@ -6,3 +6,4 @@ resources:
 
 images:
   - name: ghcr.io/tonorg/landing-page/landing-page
+    newTag: latest
