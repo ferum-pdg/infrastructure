@@ -28,7 +28,9 @@ The feature `Argo CD Image Updater` is used to monitor an image in a repository 
 
 Every 3 minutes, it will check if a new image has been uploaded.
 
-To make it works, we specify three annotations under the `Deployment` metadata.
+To make it works, we must use a file named `kustomization.yaml` where we define the image used. Argo CD Image Updater relies on this file to know how and where to modify the image reference. The value declared in this file automatically overrides those specified in the `deployment.yaml` file.
+
+Next, we configured Argo CD Image Updater by adding three annotations under the `Deployment` metadata in the `deployment.yaml` file.
 
 ```yaml
 apiVersion: apps/v1
@@ -41,8 +43,8 @@ metadata:
     argocd-image-updater.argoproj.io/landing-page.update-strategy: digest
 ```
 
-**Write-back method :** Argo CD Image Updater uses a write-back method to propagate updated image version to Argo CD. In our setup, the selected method is `git`. When a new version of a container image is detected, the Image Updater does not directly modify the `deployment.yaml` or `kustomization.yaml`. Instead, it writes the update into a file named `.argocd-source-<appName>.yaml`. This file contains an `images:` section that dynamically overrides the image used in the `kustomization.yaml`, which holds the default image configuration. The change is then automatically committed and pushed to the Git repository. Argo CD detects this Git commit and automatically applies the change to the cluster by syncing the updated manifests. 
+**Write-back method :** Argo CD Image Updater uses a write-back method to propagate updated image version to Argo CD. In our setup, the selected method is `git`. When a new version of a container image is detected, the Image Updater does not directly modify the `deployment.yaml` or `kustomization.yaml`. Instead, it writes the update into a file named `.argocd-source-<appName>.yaml`. This file contains an `images:` section that holds the new image name, then the tool run `kustomize edit set image` command, which will dynamically overrides the image used in the `kustomization.yaml`. The change is then automatically committed and pushed to the Git repository. Argo CD detects this Git commit and automatically applies the change to the cluster by syncing the updated manifests. 
 
 **Image-list :** Defines the image name to monitor.
 
-**Update-strategy :** Defines how Argo CD Image Updater will find new verison of an image that is to be updated. By using the digest strategy, it will inspect a single tab in the registry for changes and when the currently used digest differs from what is found in the registry, it will update the `images:` section into the file `.argocd-source-<appName>.yaml`. Then, the image used will appear as `...:latest@sha<somelonghaststring>`.
+**Update-strategy :** Defines how Argo CD Image Updater will find new verison of an image that is to be updated. By using the digest strategy, it will inspect a single tag in the registry for changes and when the currently used digest differs from what is found in the registry, it will update the `images:` section into the file `.argocd-source-<appName>.yaml`. Then, the image used will appear as `...:latest@sha<somelonghaststring>`.
