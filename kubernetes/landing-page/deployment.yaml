@@ -29,7 +29,6 @@ spec:
         image: ghcr.io/ferum-pdg/landing-page/landing-page:latest
         ports:
         - containerPort: 3000
-        restartPolicy: Always
         imagePullPolicy: Always
 ---
 apiVersion: v1
