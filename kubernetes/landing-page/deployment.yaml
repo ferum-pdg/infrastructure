@@ -26,6 +26,7 @@ spec:
         ports:
         - containerPort: 3000
       restartPolicy: Always
+      imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service
