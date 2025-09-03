@@ -121,13 +121,14 @@ metadata:
   namespace: backend
   name: ferum-ingress
   annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   ingressClassName: nginx
   rules:
   - http:
       paths:
-      - path: /backend
+      - path: /backend(/|$)(.*)
         pathType: Prefix
         backend:
           service:
