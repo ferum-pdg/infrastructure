@@ -30,6 +30,12 @@ spec:
         ports:
         - containerPort: 8080
         imagePullPolicy: Always
+        env:
+        - name: GROQ_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: GROQ_API_KEY
 ---
 apiVersion: v1
 kind: Service
