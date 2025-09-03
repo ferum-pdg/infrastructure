@@ -3,17 +3,7 @@ kind: Namespace
 metadata:
   name: backend
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  namespace: backend
-  name: postgres-pvc
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
+
 ---
 apiVersion: apps/v1
 kind: Deployment
