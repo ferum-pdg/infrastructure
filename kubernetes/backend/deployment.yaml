@@ -72,7 +72,7 @@ spec:
   rules:
   - http:
       paths:
-      - path: /backend(/|$)(.*)
+      - path: ^/(?!q$)backend(/|$)(.*)
         pathType: ImplementationSpecific
         backend:
           service:
