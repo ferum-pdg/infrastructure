@@ -55,8 +55,8 @@ spec:
   rules:
   - http:
       paths:
-      - path: /landing(/|$)(.*)
-        pathType: ImplementationSpecific
+      - path: /landing
+        pathType: Prefix
         backend:
           service:
             name: landing-page-svc
