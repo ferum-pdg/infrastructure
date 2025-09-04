@@ -12,7 +12,7 @@ metadata:
     app: backend
   annotations:
     argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
-    argocd-image-updater.argoproj.io/image-list: backend=ghcr.io/ferum-pdg/backend-api
+    argocd-image-updater.argoproj.io/image-list: backend=ghcr.io/ferum-pdg/backend-api:prod-latest
     argocd-image-updater.argoproj.io/backend.update-strategy: digest
 spec:
   replicas: 1
