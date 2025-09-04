@@ -12,7 +12,7 @@ metadata:
     app: backend
   annotations:
     argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
-    argocd-image-updater.argoproj.io/image-list: backend=ghcr.io/ferum-pdg/backend-api
+    argocd-image-updater.argoproj.io/image-list: backend=ghcr.io/ferum-pdg/backend-api:prod-latest
     argocd-image-updater.argoproj.io/backend.update-strategy: digest
 spec:
   replicas: 1
@@ -60,7 +60,7 @@ spec:
   type: ClusterIP
   ports:
     - protocol: TCP
-      port: 8080
+      port: 80
       targetPort: 8080
 ---
 apiVersion: networking.k8s.io/v1
@@ -82,7 +82,7 @@ spec:
           service:
             name: backend-svc
             port:
-              number: 8080
+              number: 80
 ---
 apiVersion: apps/v1
 kind: Deployment
