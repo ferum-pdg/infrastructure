@@ -1,3 +1,3 @@
 kustomize:
   images:
-  - ghcr.io/ferum-pdg/landing-page/landing-page:latest@sha256:8256b31ffb3f7171e61b318bb2de230655d9f46dca0af1b9d296452b36cf377f
+  - ghcr.io/ferum-pdg/landing-page/landing-page:latest@sha256:ef575ac5bdf5ed6f54ce1fe89820be89a64260a42f6f17eea156b09775dbd524
