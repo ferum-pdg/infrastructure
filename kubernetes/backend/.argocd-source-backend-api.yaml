@@ -1,0 +1,3 @@
+kustomize:
+  images:
+  - ghcr.io/ferum-pdg/backend-api:prod-latest@sha256:7ec7f76826352d6c028cb1d48842031a8ed9e903a06507d499f6b05d0732f2c0
