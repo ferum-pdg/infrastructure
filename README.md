@@ -8,11 +8,11 @@ For the moment, the landing page is accessible through HTTP :
 http://83.228.200.235
 ```
 
-## Pipeline CI/CD
+## Pipeline CI/CD
 
 To have git as source for the cluster configuration, we use the `Arog CD` tool.
 
-At each commit on the branch `main`, the tool will sync the modification whit what is currently running in the cluster.
+At each commit on the branch `main`, the tool will sync the modification with what is currently running in the cluster.
 
 To access to the Argo CD UI, you can run this command :
 
