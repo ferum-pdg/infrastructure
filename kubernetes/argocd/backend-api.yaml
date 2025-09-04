@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd-image-updater.argoproj.io/backend.update-strategy: digest
+    argocd-image-updater.argoproj.io/image-list: backend=ghcr.io/ferum-pdg/backend-api:prod-latest
+    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
+  name: backend-api
+  namespace: argocd
+spec:
+  destination:
+    namespace: backend
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: kubernetes/backend/
+    repoURL: https://github.com/ferum-pdg/infrastructure
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
